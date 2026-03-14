@@ -11,6 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SoundIndexRouteImport } from './routes/sound/index'
+import { Route as ColorIndexRouteImport } from './routes/color/index'
+import { Route as SoundGameRouteImport } from './routes/sound/game'
+import { Route as ColorGameRouteImport } from './routes/color/game'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -22,31 +26,80 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SoundIndexRoute = SoundIndexRouteImport.update({
+  id: '/sound/',
+  path: '/sound/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ColorIndexRoute = ColorIndexRouteImport.update({
+  id: '/color/',
+  path: '/color/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SoundGameRoute = SoundGameRouteImport.update({
+  id: '/sound/game',
+  path: '/sound/game',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ColorGameRoute = ColorGameRouteImport.update({
+  id: '/color/game',
+  path: '/color/game',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/color/game': typeof ColorGameRoute
+  '/sound/game': typeof SoundGameRoute
+  '/color/': typeof ColorIndexRoute
+  '/sound/': typeof SoundIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/color/game': typeof ColorGameRoute
+  '/sound/game': typeof SoundGameRoute
+  '/color': typeof ColorIndexRoute
+  '/sound': typeof SoundIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/color/game': typeof ColorGameRoute
+  '/sound/game': typeof SoundGameRoute
+  '/color/': typeof ColorIndexRoute
+  '/sound/': typeof SoundIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/color/game'
+    | '/sound/game'
+    | '/color/'
+    | '/sound/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/about' | '/color/game' | '/sound/game' | '/color' | '/sound'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/color/game'
+    | '/sound/game'
+    | '/color/'
+    | '/sound/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ColorGameRoute: typeof ColorGameRoute
+  SoundGameRoute: typeof SoundGameRoute
+  ColorIndexRoute: typeof ColorIndexRoute
+  SoundIndexRoute: typeof SoundIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +118,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sound/': {
+      id: '/sound/'
+      path: '/sound'
+      fullPath: '/sound/'
+      preLoaderRoute: typeof SoundIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/color/': {
+      id: '/color/'
+      path: '/color'
+      fullPath: '/color/'
+      preLoaderRoute: typeof ColorIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sound/game': {
+      id: '/sound/game'
+      path: '/sound/game'
+      fullPath: '/sound/game'
+      preLoaderRoute: typeof SoundGameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/color/game': {
+      id: '/color/game'
+      path: '/color/game'
+      fullPath: '/color/game'
+      preLoaderRoute: typeof ColorGameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ColorGameRoute: ColorGameRoute,
+  SoundGameRoute: SoundGameRoute,
+  ColorIndexRoute: ColorIndexRoute,
+  SoundIndexRoute: SoundIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

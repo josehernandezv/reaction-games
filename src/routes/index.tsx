@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { Button } from '#/components/ui/button'
 
 export const Route = createFileRoute('/')({ component: App })
 
@@ -82,6 +83,9 @@ function App() {
           </li>
         </ul>
       </section>
+      <Button variant="outline" size="lg" className="mt-8">
+        Click me
+      </Button>
     </main>
   )
 }
