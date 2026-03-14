@@ -48,9 +48,9 @@ function RouteComponent() {
     })
   }
   return (
-    <main className="container max-w-md mx-auto py-12">
-      <form onSubmit={handleSubmit}>
-        <Card className="w-full">
+    <main className="container mx-auto p-6 min-h-svh flex items-center justify-center flex-col">
+      <form onSubmit={handleSubmit} className="w-full max-w-md">
+        <Card>
           <CardHeader>
             <CardTitle>Juego de Sonido</CardTitle>
             <CardDescription>
