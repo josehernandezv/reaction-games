@@ -73,7 +73,7 @@ export function useColorGame({
   const [timeRemaining, setTimeRemaining] = useState<number>(duration)
   const [currentColor, setCurrentColor] = useState<Color>('white')
   const [currentBackgroundColor, setCurrentBackgroundColor] =
-    useState<Color>('black')
+    useState<Color>('blue')
   const [currentName, setCurrentName] = useState<string>('Rojo')
   const timeRemainingRef = useRef(timeRemaining)
   const prevComboKeyRef = useRef<string | null>(null)

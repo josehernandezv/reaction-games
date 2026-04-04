@@ -39,10 +39,10 @@ export const COLOR_OPTIONS = [
   { label: 'Verde', value: 'green' },
   { label: 'Azul', value: 'blue' },
   { label: 'Amarillo', value: 'yellow' },
-  { label: 'Morado', value: 'purple' },
-  { label: 'Naranja', value: 'orange' },
-  { label: 'Rosa', value: 'pink' },
-  { label: 'Negro', value: 'black' },
+  // { label: 'Morado', value: 'purple' },
+  // { label: 'Naranja', value: 'orange' },
+  // { label: 'Rosa', value: 'pink' },
+  // { label: 'Negro', value: 'black' },
   { label: 'Blanco', value: 'white' },
 ] as const
 
