@@ -9,18 +9,12 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SoundIndexRouteImport } from './routes/sound/index'
 import { Route as ColorIndexRouteImport } from './routes/color/index'
 import { Route as SoundGameRouteImport } from './routes/sound/game'
 import { Route as ColorGameRouteImport } from './routes/color/game'
 
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,7 +43,6 @@ const ColorGameRoute = ColorGameRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/color/game': typeof ColorGameRoute
   '/sound/game': typeof SoundGameRoute
   '/color/': typeof ColorIndexRoute
@@ -57,7 +50,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/color/game': typeof ColorGameRoute
   '/sound/game': typeof SoundGameRoute
   '/color': typeof ColorIndexRoute
@@ -66,7 +58,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/color/game': typeof ColorGameRoute
   '/sound/game': typeof SoundGameRoute
   '/color/': typeof ColorIndexRoute
@@ -74,28 +65,14 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/about'
-    | '/color/game'
-    | '/sound/game'
-    | '/color/'
-    | '/sound/'
+  fullPaths: '/' | '/color/game' | '/sound/game' | '/color/' | '/sound/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/color/game' | '/sound/game' | '/color' | '/sound'
-  id:
-    | '__root__'
-    | '/'
-    | '/about'
-    | '/color/game'
-    | '/sound/game'
-    | '/color/'
-    | '/sound/'
+  to: '/' | '/color/game' | '/sound/game' | '/color' | '/sound'
+  id: '__root__' | '/' | '/color/game' | '/sound/game' | '/color/' | '/sound/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
   ColorGameRoute: typeof ColorGameRoute
   SoundGameRoute: typeof SoundGameRoute
   ColorIndexRoute: typeof ColorIndexRoute
@@ -104,13 +81,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -151,7 +121,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
   ColorGameRoute: ColorGameRoute,
   SoundGameRoute: SoundGameRoute,
   ColorIndexRoute: ColorIndexRoute,
